@@ -2,11 +2,11 @@
 
 **Llama Control** to darmowa aplikacja na komputer, która pomaga uruchamiać i ogarniać modele AI (takie jak lokalny "ChatGPT") na własnym sprzęcie — bez internetu, bez abonamentu, bez wysyłania niczego na zewnątrz.
 
-## Jak to działa (po ludzku)
+## Jak to działa
 
-Modele AI trzymane są lokalnie na Twoim dysku jako pliki. Żeby taki model "ożył" i można było z nim rozmawiać, potrzebny jest silnik, który go uruchomi — nazywa się **llama.cpp**.
+Modele AI trzymane są lokalnie na Twoim dysku jako pliki. Żeby taki model "ożył" i można było z nim rozmawiać, potrzebny jest silnik, który go uruchomi. Llama Control korzysta z **[llama.cpp](https://github.com/ggml-org/llama.cpp)** — jednego z najpopularniejszych, otwartoźródłowych silników do uruchamiania modeli AI lokalnie.
 
-Llama Control to wygodna nakładka na ten silnik:
+Llama Control to wygodna **nakładka** na ten silnik:
 
 - **Pilnuje Twoich modeli** — pokazuje listę, ile ważą, kiedy je pobrano, pozwala je oznaczać jako ulubione i opisywać.
 - **Sam zainstaluje silnik llama.cpp**, jeśli go jeszcze nie masz — dobiera odpowiednią wersję pod Twoją kartę graficzną.
@@ -16,11 +16,20 @@ Llama Control to wygodna nakładka na ten silnik:
 
 Krótko: instalujesz, apka sama dogaduje resztę, Ty tylko klikasz.
 
+### Dlaczego llama.cpp, a nie np. Ollama albo LM Studio?
+
+Bo to nie jest kolejny, osobny silnik AI konkurujący z tamtymi — to celowo **lekka nakładka**, a nie pełna aplikacja. Ollama i LM Studio to swoje własne, kompletne środowiska, które siedzą w tle, zajmują pamięć i zasoby cały czas, nawet gdy nic nie robisz. Llama Control nie ma własnego, ciężkiego silnika działającego w tle — po prostu włącza i wyłącza `llama.cpp` dokładnie wtedy, kiedy chcesz z niego skorzystać, i nie zabiera Ci RAM-u ani mocy komputera, kiedy tego nie robisz.
+
 ## Na jakich urządzeniach to działa
 
-- **Tylko Windows** (10 lub 11) — komputer stacjonarny lub laptop. Nie działa na telefonach, tabletach ani na Macu/Linuksie.
+- **Obecnie: tylko Windows** (10 lub 11) — komputer stacjonarny lub laptop. Nie działa na telefonach ani tabletach.
 - **Karta graficzna NVIDIA (GeForce/RTX) jest zalecana** — wtedy modele AI działają szybko. Bez niej też zadziała, ale wolniej (na samym procesorze).
 - Modele AI potrafią ważyć od kilku do kilkudziesięciu gigabajtów, więc warto mieć trochę wolnego miejsca na dysku.
+
+### Plany na przyszłość
+
+- Wsparcie dla **kart graficznych AMD i Intel** (obecnie najlepiej działa z NVIDIA).
+- Optymalizacja i wsparcie dla **macOS i Linuksa** (obecnie tylko Windows).
 
 ## Jak zacząć
 
