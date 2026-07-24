@@ -19,6 +19,7 @@ Llama Control is a friendly **wrapper** around that engine:
 - **Installs the llama.cpp engine for you** if you don't already have it, picking the right build for your graphics card.
 - **Starts and stops a model with one click.** No typing anything into a console.
 - **Lets you download new models** straight from HuggingFace (think of it as a "store" for AI models) and tells you right away whether a given model will fit in your GPU's memory.
+- **Can figure out good settings for you, and actually checks them.** An AI assistant proposes a starting configuration for a model, then an "auto-tune" mode can launch it for real, test it under real load, and automatically back off to safer settings if something crashes — instead of just guessing and hoping.
 - **Updates itself** whenever a new version comes out.
 
 In short: you install it, the app figures out the rest, you just click.
@@ -37,6 +38,7 @@ This isn't meant to be another standalone AI engine competing with those. It's d
 
 - Support for **AMD and Intel graphics cards** (currently works best with NVIDIA).
 - Optimization and support for **macOS and Linux** (currently Windows only).
+- Widening the automatic configuration tester to cover more settings and hardware combinations, so more models get a verified-working setup with a single click.
 
 ### Getting started
 
@@ -64,6 +66,7 @@ Llama Control to wygodna **nakładka** na ten silnik:
 - **Sam zainstaluje silnik llama.cpp**, jeśli go jeszcze nie masz. Dobiera odpowiednią wersję pod Twoją kartę graficzną.
 - **Uruchamia i zatrzymuje model jednym kliknięciem.** Bez wpisywania niczego w konsoli.
 - **Pozwala pobierać nowe modele** prosto z serwisu HuggingFace (to taki "sklep" z modelami AI) i od razu mówi, czy dany model zmieści się w pamięci Twojej karty graficznej.
+- **Potrafi sama dobrać ustawienia i to sprawdzić.** Asystent AI proponuje konfigurację startową dla modelu, a tryb "auto-tune" może realnie ją uruchomić, przetestować pod prawdziwym obciążeniem i automatycznie cofnąć się do bezpieczniejszych ustawień, jeśli coś się wysypie — zamiast zgadywać na ślepo.
 - **Sama się aktualizuje**, gdy pojawi się nowa wersja.
 
 Krótko: instalujesz, apka sama dogaduje resztę, Ty tylko klikasz.
@@ -82,6 +85,7 @@ To nie jest kolejny, osobny silnik AI konkurujący z tamtymi. To celowo **lekka 
 
 - Wsparcie dla **kart graficznych AMD i Intel** (obecnie najlepiej działa z NVIDIA).
 - Optymalizacja i wsparcie dla **macOS i Linuksa** (obecnie tylko Windows).
+- Rozszerzenie automatycznego testera konfiguracji o więcej ustawień i kombinacji sprzętowych, żeby więcej modeli dostawało sprawdzoną, działającą konfigurację jednym kliknięciem.
 
 ### Jak zacząć
 
