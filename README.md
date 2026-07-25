@@ -7,11 +7,10 @@
 **Run AI language models on your own PC — without ever touching a command line.**
 
 [![Latest release](https://img.shields.io/github/v/release/Mil0s7/llama-control?label=latest&color=2ea44f)](https://github.com/Mil0s7/llama-control/releases/latest)
-[![Installer downloads](https://img.shields.io/github/downloads/Mil0s7/llama-control/Llama-Control-Setup.exe?label=installer%20downloads&color=blue)](https://github.com/Mil0s7/llama-control/releases)
 [![Platform](https://img.shields.io/badge/platform-Windows%2010%20%7C%2011-0078D4?logo=windows&logoColor=white)](#getting-started)
 [![Built on llama.cpp](https://img.shields.io/badge/built%20on-llama.cpp-orange)](https://github.com/ggml-org/llama.cpp)
 
-[![Download for Windows](https://img.shields.io/badge/Download-Windows%20installer-2ea44f?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/Mil0s7/llama-control/releases/latest)
+[![Download for Windows](https://img.shields.io/badge/Download%20for%20Windows-2ea44f?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/Mil0s7/llama-control/releases/latest)
 
 **[English](#english)** · **[Polski](#polski)**
 
