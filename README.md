@@ -1,11 +1,26 @@
-[English](#english) | [Polski](#polski)
+<div align="center">
+
+<img src="docs/logo.png" width="170" alt="Llama Control logo — a llama head">
+
+# Llama Control
+
+**Run AI language models on your own PC — without ever touching a command line.**
+
+[![Latest release](https://img.shields.io/github/v/release/Mil0s7/llama-control?label=latest&color=2ea44f)](https://github.com/Mil0s7/llama-control/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/Mil0s7/llama-control/total?color=blue)](https://github.com/Mil0s7/llama-control/releases)
+[![Platform](https://img.shields.io/badge/platform-Windows%2010%20%7C%2011-0078D4?logo=windows&logoColor=white)](#getting-started)
+[![Built on llama.cpp](https://img.shields.io/badge/built%20on-llama.cpp-orange)](https://github.com/ggml-org/llama.cpp)
+
+[![Download for Windows](https://img.shields.io/badge/Download-Windows%20installer-2ea44f?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/Mil0s7/llama-control/releases/latest)
+
+**[English](#english)** · **[Polski](#polski)**
+
+</div>
 
 ---
 
 <a id="english"></a>
 ## English
-
-# Llama Control
 
 **Llama Control** is a free desktop app that helps you run and manage AI language models (like a local "ChatGPT") on your own hardware. No account, no subscription, and your conversations never leave your computer.
 
@@ -70,8 +85,6 @@ fair position — llama.cpp itself is open source and you can always drive it fr
 
 <a id="polski"></a>
 ## Polski
-
-# Llama Control
 
 **Llama Control** to darmowa aplikacja na komputer. Pomaga uruchamiać i ogarniać modele AI (takie jak lokalny "ChatGPT") na własnym sprzęcie. Bez konta, bez abonamentu, a Twoje rozmowy nie opuszczają Twojego komputera.
 
