@@ -31,7 +31,7 @@ AI models live locally on your disk as files. To make a model actually "come ali
 
 Llama Control is a friendly **wrapper** around that engine:
 
-- **Keeps track of your models.** Shows a list, their size, when they were downloaded, and lets you tag them as favorites or add notes.
+- **Keeps track of your models.** Shows a list, their size, when they were downloaded, and lets you tag them as favorites or add notes. Models from the well-known families — Qwen, Llama, Mistral, Gemma, DeepSeek, Nemotron — are recognised by their filename and shown with their logo.
 - **Installs the llama.cpp engine for you** if you don't already have it, picking the right build for your graphics card.
 - **Starts and stops a model with one click.** No typing anything into a console.
 - **Lets you download new models** straight from HuggingFace (think of it as a "store" for AI models) and tells you right away whether a given model will fit in your GPU's memory.
@@ -95,7 +95,7 @@ Modele AI trzymane są lokalnie na Twoim dysku jako pliki. Żeby taki model "oż
 
 Llama Control to wygodna **nakładka** na ten silnik:
 
-- **Pilnuje Twoich modeli.** Pokazuje listę, ile ważą, kiedy je pobrano, pozwala je oznaczać jako ulubione i opisywać.
+- **Pilnuje Twoich modeli.** Pokazuje listę, ile ważą, kiedy je pobrano, pozwala je oznaczać jako ulubione i opisywać. Modele ze znanych rodzin — Qwen, Llama, Mistral, Gemma, DeepSeek, Nemotron — rozpoznaje po nazwie pliku i pokazuje z ich logo.
 - **Sam zainstaluje silnik llama.cpp**, jeśli go jeszcze nie masz. Dobiera odpowiednią wersję pod Twoją kartę graficzną.
 - **Uruchamia i zatrzymuje model jednym kliknięciem.** Bez wpisywania niczego w konsoli.
 - **Pozwala pobierać nowe modele** prosto z serwisu HuggingFace (to taki "sklep" z modelami AI) i od razu mówi, czy dany model zmieści się w pamięci Twojej karty graficznej.
