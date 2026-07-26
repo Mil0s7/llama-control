@@ -39,6 +39,10 @@ Llama Control is a friendly **wrapper** around that engine:
   ![Browsing HuggingFace with hardware-aware fit hints](docs/huggingface-en.png)
 
 - **Can figure out good settings for you, and actually checks them.** An AI assistant proposes a starting configuration for a model, then an "auto-tune" mode can launch it for real, test it under real load, and automatically back off to safer settings if something crashes — instead of just guessing and hoping.
+- **Ships a built-in terminal**, side by side with chat. Split it into as many panes as you need, and each one keeps running — including whatever's inside it — even while you're looking at a different tab.
+
+  ![Chat and a split terminal, side by side](docs/terminal-en.png)
+
 - **Updates itself** whenever a new version comes out.
 
 In short: you install it, the app figures out the rest, you just click.
@@ -50,12 +54,11 @@ This isn't meant to be another standalone AI engine competing with those. It's d
 ### What devices this works on
 
 - **Windows only for now** (10 or 11): desktop or laptop. Doesn't work on phones or tablets.
-- **An NVIDIA graphics card (GeForce/RTX) is recommended.** Models run fast with one. It still works without one, just slower (on the CPU alone).
+- **NVIDIA, AMD and Intel graphics cards all get GPU acceleration** (NVIDIA via CUDA, AMD/Intel via Vulkan) — the app detects what you have and installs the right engine build automatically. No GPU at all still works, just slower (on the CPU alone).
 - AI models can weigh from a few gigabytes to tens of gigabytes each, so it's worth having some free disk space.
 
 #### Planned
 
-- Support for **AMD and Intel graphics cards** (currently works best with NVIDIA).
 - Optimization and support for **macOS and Linux** (currently Windows only).
 - Widening the automatic configuration tester to cover more settings and hardware combinations, so more models get a verified-working setup with a single click.
 
@@ -103,6 +106,10 @@ Llama Control to wygodna **nakładka** na ten silnik:
   ![Przeglądanie HuggingFace z podpowiedziami dopasowania do sprzętu](docs/huggingface-pl.png)
 
 - **Potrafi sama dobrać ustawienia i to sprawdzić.** Asystent AI proponuje konfigurację startową dla modelu, a tryb "auto-tune" może realnie ją uruchomić, przetestować pod prawdziwym obciążeniem i automatycznie cofnąć się do bezpieczniejszych ustawień, jeśli coś się wysypie — zamiast zgadywać na ślepo.
+- **Ma wbudowany terminal**, obok czatu. Można go podzielić na tyle paneli, ile potrzeba, a każdy działa dalej — razem z tym, co w nim odpalone — nawet gdy patrzysz akurat na inną zakładkę.
+
+  ![Czat i podzielony terminal obok siebie](docs/terminal-pl.png)
+
 - **Sama się aktualizuje**, gdy pojawi się nowa wersja.
 
 Krótko: instalujesz, apka sama dogaduje resztę, Ty tylko klikasz.
@@ -114,12 +121,11 @@ To nie jest kolejny, osobny silnik AI konkurujący z tamtymi. To celowo **lekka 
 ### Na jakich urządzeniach to działa
 
 - **Obecnie tylko Windows** (10 lub 11): komputer stacjonarny lub laptop. Nie działa na telefonach ani tabletach.
-- **Karta graficzna NVIDIA (GeForce/RTX) jest zalecana.** Wtedy modele AI działają szybko. Bez niej też zadziała, ale wolniej (na samym procesorze).
+- **Karty graficzne NVIDIA, AMD i Intel — wszystkie dostają przyspieszenie GPU** (NVIDIA przez CUDA, AMD/Intel przez Vulkan) — aplikacja sama rozpoznaje, co masz, i instaluje odpowiednią wersję silnika. Bez karty graficznej też zadziała, tylko wolniej (na samym procesorze).
 - Modele AI potrafią ważyć od kilku do kilkudziesięciu gigabajtów, więc warto mieć trochę wolnego miejsca na dysku.
 
 #### Plany na przyszłość
 
-- Wsparcie dla **kart graficznych AMD i Intel** (obecnie najlepiej działa z NVIDIA).
 - Optymalizacja i wsparcie dla **macOS i Linuksa** (obecnie tylko Windows).
 - Rozszerzenie automatycznego testera konfiguracji o więcej ustawień i kombinacji sprzętowych, żeby więcej modeli dostawało sprawdzoną, działającą konfigurację jednym kliknięciem.
 
