@@ -1,0 +1,20 @@
+# Llama Control
+
+> Llama Control is a free desktop app for Windows and macOS that lets you run AI language models (LLMs) locally on your own PC through a graphical interface built on llama.cpp — no command line, no cloud, no subscription. All inference happens on-device; there is no telemetry.
+
+Llama Control is a lightweight GUI wrapper, not a standalone AI engine. It manages the open-source llama.cpp inference engine on the user's behalf: installing and updating the correct GPU build (NVIDIA via CUDA, AMD/Intel via Vulkan, Metal on Apple Silicon, or CPU-only), downloading GGUF model files from Hugging Face with VRAM-fit checks before download, proposing and load-testing model configuration via an optional AI-assisted auto-tune, and starting or stopping a local AI chat server with one click. It ships a built-in split-pane terminal and updates itself automatically. It recognizes and labels model files from the Qwen, Llama, Mistral, Gemma, DeepSeek, and Nemotron families. The app itself is closed-source (only the installer is distributed); the llama.cpp engine it runs is open-source. Supported today: Windows 10, Windows 11, and macOS on Apple Silicon (M1 and later). Linux support is planned. There is no account system, no usage fees, and no data collection — the app only contacts Hugging Face (model downloads), GitHub (update checks), and, only if the user configures it with their own API key, an AI provider (Anthropic, OpenAI, or Google) for two optional features (auto-tune suggestions and benchmark scoring).
+
+## Documentation
+- [README (English)](https://github.com/Mil0s7/llama-control/blob/main/README.md#english): full product description, features, comparison with Ollama/LM Studio, privacy details, FAQ, and installation steps
+- [README (Polski)](https://github.com/Mil0s7/llama-control/blob/main/README.md#polski): pełny opis produktu, funkcje, porównanie z Ollamą/LM Studio, prywatność, FAQ i instrukcja instalacji
+
+## Downloads
+- [Latest release](https://github.com/Mil0s7/llama-control/releases/latest): current installers for Windows (.exe) and macOS Apple Silicon (.dmg)
+- [All releases](https://github.com/Mil0s7/llama-control/releases): version history and changelogs
+
+## Related projects
+- [llama.cpp](https://github.com/ggml-org/llama.cpp): the open-source local LLM inference engine that Llama Control installs, updates, and controls
+
+## Optional
+- [Hugging Face](https://huggingface.co): source of the GGUF models browsable and downloadable from inside the app
+</content>

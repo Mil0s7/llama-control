@@ -8,13 +8,45 @@
 
 [![Latest release](https://img.shields.io/github/v/release/Mil0s7/llama-control?label=latest&color=2ea44f)](https://github.com/Mil0s7/llama-control/releases/latest)
 [![Platform](https://img.shields.io/badge/platform-Windows%2010%20%7C%2011-0078D4?logo=windows&logoColor=white)](#getting-started)
+[![Platform](https://img.shields.io/badge/platform-macOS%20(Apple%20Silicon)-000000?logo=apple&logoColor=white)](#getting-started)
 [![Built on llama.cpp](https://img.shields.io/badge/built%20on-llama.cpp-orange)](https://github.com/ggml-org/llama.cpp)
 
 [![Download for Windows](https://img.shields.io/badge/Download%20for%20Windows-2ea44f?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/Mil0s7/llama-control/releases/latest)
+[![Download for macOS](https://img.shields.io/badge/Download%20for%20macOS-000000?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/Mil0s7/llama-control/releases/latest)
 
 **[English](#english)** · **[Polski](#polski)**
 
 </div>
+
+<!--
+Topics: local LLM GUI, llama.cpp frontend, run LLM locally Windows, run LLM locally macOS,
+Apple Silicon local LLM, GGUF model manager, offline AI chat app, self-hosted LLM launcher,
+NVIDIA CUDA / AMD Intel Vulkan GPU acceleration, Metal GPU acceleration, Hugging Face model
+downloader, no command line AI, private local ChatGPT alternative.
+-->
+
+---
+
+## What is Llama Control?
+
+**Llama Control is a free desktop app for Windows and macOS (Apple Silicon) that lets you run AI language models (LLMs) locally on your own PC through a graphical interface, no command line required.** It's a lightweight GUI wrapper around **[llama.cpp](https://github.com/ggml-org/llama.cpp)**, the open-source engine that actually runs the models: Llama Control installs and updates that engine for you, downloads **GGUF** model files from Hugging Face, auto-tunes their settings, and starts or stops a local AI chat server with one click. All inference happens on-device: no account, no cloud, no telemetry.
+
+**Llama Control to darmowa aplikacja na Windows i macOS (Apple Silicon) do uruchamiania modeli AI (LLM) lokalnie, na własnym komputerze, bez linii poleceń**: nakładka graficzna na silnik **llama.cpp**, która sama instaluje silnik, pobiera modele GGUF z Hugging Face, dobiera i testuje ich ustawienia oraz uruchamia/zatrzymuje lokalny serwer AI jednym kliknięciem. Wszystko działa lokalnie: bez konta, bez chmury, bez telemetrii.
+
+### At a glance
+
+| Specification | Details |
+|---|---|
+| Category | Desktop GUI / launcher for local LLM inference |
+| Inference engine | [llama.cpp](https://github.com/ggml-org/llama.cpp) (installed and updated automatically) |
+| Platforms | Windows 10, Windows 11, macOS (Apple Silicon, M1 and later); Linux planned |
+| GPU acceleration | NVIDIA via CUDA · AMD & Intel via Vulkan · Metal on Apple Silicon · CPU-only fallback |
+| Model format | GGUF, downloaded directly from Hugging Face |
+| Recognized model families | Qwen, Llama, Mistral, Gemma, DeepSeek, Nemotron |
+| Price / account | Free, no account, no subscription |
+| Source model | App is closed-source; the underlying engine (llama.cpp) is open-source |
+| Data & privacy | 100% local inference; no telemetry; optional cloud AI features require your own API key |
+| Key features | Model manager, one-click server start/stop, Hugging Face browser with VRAM-fit check, AI-assisted auto-tune with real-load testing, built-in split-pane terminal, auto-update |
 
 ---
 
@@ -27,7 +59,7 @@
 
 ### How it works
 
-AI models live locally on your disk as files. To make a model actually "come alive" and let you talk to it, you need an engine to run it. Llama Control uses **[llama.cpp](https://github.com/ggml-org/llama.cpp)**, one of the most popular open-source engines for running AI models locally.
+AI models live locally on your disk as files (in the **GGUF** format). To make a model actually "come alive" and let you talk to it, you need an engine to run it. Llama Control uses **[llama.cpp](https://github.com/ggml-org/llama.cpp)**, one of the most popular open-source engines for running AI models locally.
 
 Llama Control is a friendly **wrapper** around that engine:
 
@@ -51,22 +83,29 @@ In short: you install it, the app figures out the rest, you just click.
 
 This isn't meant to be another standalone AI engine competing with those. It's deliberately a **lightweight wrapper**, not a full application. Ollama and LM Studio are their own complete environments. They run in the background and use up memory and resources all the time, even when you're not doing anything. Llama Control doesn't have its own heavy engine running in the background. It simply turns `llama.cpp` on and off exactly when you want to use it, and doesn't eat your RAM or CPU/GPU power when you don't.
 
+| | Llama Control | Ollama / LM Studio |
+|---|---|---|
+| What it is | A lightweight wrapper around llama.cpp | A full standalone AI runtime/environment |
+| Background engine | Starts only when you launch a model, stops when you're done | Runs continuously as a background service |
+| Idle resource use | None | Keeps using RAM/CPU/GPU even when idle |
+
 ### What devices this works on
 
-- **Windows only for now** (10 or 11): desktop or laptop. Doesn't work on phones or tablets.
-- **NVIDIA, AMD and Intel graphics cards all get GPU acceleration** (NVIDIA via CUDA, AMD/Intel via Vulkan). The app detects what you have and installs the right engine build automatically. No GPU at all still works, just slower (on the CPU alone).
+- **Windows (10 or 11) and macOS (Apple Silicon, M1 and later)**: desktop or laptop. Doesn't work on phones or tablets.
+- **On Windows, NVIDIA, AMD and Intel graphics cards all get GPU acceleration** (NVIDIA via CUDA, AMD/Intel via Vulkan). The app detects what you have and installs the right engine build automatically. No GPU at all still works, just slower (on the CPU alone). **On Mac, Apple Silicon's GPU is used automatically via Metal**, no extra setup.
 - AI models can weigh from a few gigabytes to tens of gigabytes each, so it's worth having some free disk space.
 
 #### Planned
 
-- Optimization and support for **macOS and Linux** (currently Windows only).
+- Support for **Linux**.
 - Widening the automatic configuration tester to cover more settings and hardware combinations, so more models get a verified-working setup with a single click.
 
 ### Privacy, and a word about the source code
 
 Llama Control is free but **closed-source**: this repository holds the installers and this
-description, not the code. You are being asked to run an unsigned `.exe` from someone you don't
-know, so here is exactly what the app does over the network:
+description, not the code. You are being asked to run an unsigned installer (`.exe` on Windows,
+`.dmg` on macOS) from someone you don't know, so here is exactly what the app does over the
+network:
 
 - **Your conversations never leave your computer.** The model runs locally through llama.cpp. There is no account, no telemetry, no analytics, no usage tracking.
 - **It contacts HuggingFace** when you search for or download a model. That is the same thing your browser would do if you visited the site yourself.
@@ -78,10 +117,51 @@ fair position. llama.cpp itself is open source and you can always drive it from 
 
 ### Getting started
 
-1. Download the latest installer from the **[Releases](../../releases)** tab on the right side of this page.
-2. Run the downloaded `.exe` file.
-3. Windows may show a blue warning screen ("Windows protected your PC"). That's normal for smaller independent apps without a paid signing certificate. Click **"More info" → "Run anyway"**.
+1. Download the installer for your platform from the **[Releases](../../releases)** tab on the right side of this page: `.exe` for Windows, `.dmg` for macOS (Apple Silicon).
+2. **Windows:** run the downloaded `.exe`. Windows may show a blue warning screen ("Windows protected your PC"). That's normal for smaller independent apps without a paid signing certificate. Click **"More info" → "Run anyway"**.
+3. **macOS:** open the `.dmg` and drag Llama Control into Applications. The build isn't notarized (no Apple Developer certificate yet), so on first launch macOS will refuse to open it as "from an unidentified developer". Right-click the app → **Open**, then confirm. (Or run `xattr -cr /Applications/Llama\ Control.app` in Terminal.)
 4. Done. The app will guide you from there.
+
+### FAQ
+
+#### What is Llama Control?
+Llama Control is a free desktop app for Windows and macOS (Apple Silicon) for running AI language models (LLMs) locally on your own PC, with no command line required. It's a graphical wrapper around the open-source llama.cpp engine.
+
+#### Is Llama Control free to use?
+Yes. There's no subscription, no account, and no usage fees.
+
+#### Is Llama Control open source?
+No. The app itself is closed-source; this repository distributes only the installer and documentation. The engine it runs models through, llama.cpp, is open source, and everything the app does over the network is disclosed in the Privacy section above.
+
+#### What AI engine does Llama Control use to run models?
+[llama.cpp](https://github.com/ggml-org/llama.cpp), one of the most widely used open-source engines for local LLM inference. Llama Control installs and updates it automatically, picking the right build for your GPU.
+
+#### Which operating systems does Llama Control support?
+Windows 10, Windows 11, and macOS on Apple Silicon (M1 and later), on desktop or laptop. It doesn't run on phones or tablets. Linux support is planned.
+
+#### Which GPUs work with Llama Control?
+NVIDIA GPUs are accelerated via CUDA, and AMD/Intel GPUs via Vulkan, on Windows; Apple Silicon GPUs are accelerated via Metal on macOS. The app auto-detects your hardware and installs the matching engine build. It also runs with no GPU at all, just slower, on the CPU alone.
+
+#### How is Llama Control different from Ollama or LM Studio?
+Ollama and LM Studio are full standalone environments with a background service that keeps running (and using memory) even when idle. Llama Control is a lightweight wrapper that starts llama.cpp only when you use it and shuts it down afterward, so it doesn't consume RAM/CPU/GPU in the background.
+
+#### Where do the AI models come from?
+Models are downloaded directly from Hugging Face from inside the app, which also tells you upfront whether a given model will fit in your GPU's VRAM.
+
+#### Which model families does Llama Control recognize automatically?
+Qwen, Llama, Mistral, Gemma, DeepSeek, and Nemotron model files are recognized by filename and shown with their logo.
+
+#### Does Llama Control collect my data or read my conversations?
+No. Inference runs entirely on your machine through llama.cpp: there's no account, telemetry, analytics, or usage tracking. The app only contacts Hugging Face (model search/download), GitHub (update checks), and, only if you configure it yourself with your own API key, an AI provider (Anthropic, OpenAI, or Google) for the optional auto-tune and benchmark-scoring features.
+
+#### Do I need to know how to use a command line?
+No. The whole point of Llama Control is to remove the command line: installing the engine, downloading models, and starting or stopping a local AI server are one-click actions in the GUI. A built-in terminal is there for advanced users who want it, but it's never required.
+
+#### How much disk space do I need?
+It depends on which models you download: each can weigh from a few gigabytes to tens of gigabytes, so budget free disk space per model you plan to keep.
+
+#### How do I install Llama Control?
+Download the installer for your platform from the [Releases](../../releases) page. On Windows, run the `.exe` and click "More info → Run anyway" if SmartScreen warns you. On macOS, open the `.dmg`, drag the app into Applications, then right-click → Open on first launch since the build isn't notarized (expected for an unsigned indie app, see [Getting started](#getting-started)).
 
 ---
 
@@ -94,7 +174,7 @@ fair position. llama.cpp itself is open source and you can always drive it from 
 
 ### Jak to działa
 
-Modele AI trzymane są lokalnie na Twoim dysku jako pliki. Żeby taki model "ożył" i można było z nim rozmawiać, potrzebny jest silnik, który go uruchomi. Llama Control korzysta z **[llama.cpp](https://github.com/ggml-org/llama.cpp)**, jednego z najpopularniejszych, otwartoźródłowych silników do uruchamiania modeli AI lokalnie.
+Modele AI trzymane są lokalnie na Twoim dysku jako pliki (w formacie **GGUF**). Żeby taki model "ożył" i można było z nim rozmawiać, potrzebny jest silnik, który go uruchomi. Llama Control korzysta z **[llama.cpp](https://github.com/ggml-org/llama.cpp)**, jednego z najpopularniejszych, otwartoźródłowych silników do uruchamiania modeli AI lokalnie.
 
 Llama Control to wygodna **nakładka** na ten silnik:
 
@@ -118,22 +198,28 @@ Krótko: instalujesz, apka sama dogaduje resztę, Ty tylko klikasz.
 
 To nie jest kolejny, osobny silnik AI konkurujący z tamtymi. To celowo **lekka nakładka**, a nie pełna aplikacja. Ollama i LM Studio to swoje własne, kompletne środowiska. Siedzą w tle i zajmują pamięć oraz zasoby cały czas, nawet gdy nic nie robisz. Llama Control nie ma własnego, ciężkiego silnika działającego w tle. Po prostu włącza i wyłącza `llama.cpp` dokładnie wtedy, kiedy chcesz z niego skorzystać, i nie zabiera Ci RAM-u ani mocy komputera, kiedy tego nie robisz.
 
+| | Llama Control | Ollama / LM Studio |
+|---|---|---|
+| Czym jest | Lekka nakładka na llama.cpp | Pełne, samodzielne środowisko AI |
+| Silnik w tle | Uruchamia się tylko, gdy startujesz model, i gaśnie po zakończeniu | Działa cały czas jako usługa w tle |
+| Zużycie zasobów w bezczynności | Brak | Zajmuje RAM/CPU/GPU nawet bez użycia |
+
 ### Na jakich urządzeniach to działa
 
-- **Obecnie tylko Windows** (10 lub 11): komputer stacjonarny lub laptop. Nie działa na telefonach ani tabletach.
-- **Karty graficzne NVIDIA, AMD i Intel: wszystkie dostają przyspieszenie GPU** (NVIDIA przez CUDA, AMD/Intel przez Vulkan). Aplikacja sama rozpoznaje, co masz, i instaluje odpowiednią wersję silnika. Bez karty graficznej też zadziała, tylko wolniej (na samym procesorze).
+- **Windows (10 lub 11) i macOS (Apple Silicon, M1 i nowsze)**: komputer stacjonarny lub laptop. Nie działa na telefonach ani tabletach.
+- **Na Windows karty graficzne NVIDIA, AMD i Intel: wszystkie dostają przyspieszenie GPU** (NVIDIA przez CUDA, AMD/Intel przez Vulkan). Aplikacja sama rozpoznaje, co masz, i instaluje odpowiednią wersję silnika. Bez karty graficznej też zadziała, tylko wolniej (na samym procesorze). **Na Macu GPU Apple Silicon jest wykorzystywane automatycznie przez Metal**, bez dodatkowej konfiguracji.
 - Modele AI potrafią ważyć od kilku do kilkudziesięciu gigabajtów, więc warto mieć trochę wolnego miejsca na dysku.
 
 #### Plany na przyszłość
 
-- Optymalizacja i wsparcie dla **macOS i Linuksa** (obecnie tylko Windows).
+- Wsparcie dla **Linuksa**.
 - Rozszerzenie automatycznego testera konfiguracji o więcej ustawień i kombinacji sprzętowych, żeby więcej modeli dostawało sprawdzoną, działającą konfigurację jednym kliknięciem.
 
 ### Prywatność i słowo o kodzie źródłowym
 
 Llama Control jest darmowa, ale **zamkniętoźródłowa**: to repozytorium zawiera instalatory i ten
-opis, a nie kod. Prosimy Cię o uruchomienie niepodpisanego pliku `.exe` od nieznajomej osoby, więc
-poniżej jest dokładnie to, co aplikacja robi w sieci:
+opis, a nie kod. Prosimy Cię o uruchomienie niepodpisanego instalatora (`.exe` na Windows, `.dmg`
+na macOS) od nieznajomej osoby, więc poniżej jest dokładnie to, co aplikacja robi w sieci:
 
 - **Twoje rozmowy nie opuszczają Twojego komputera.** Model działa lokalnie przez llama.cpp. Nie ma konta, telemetrii, analityki ani zbierania danych o użyciu.
 - **Łączy się z HuggingFace**, gdy szukasz lub pobierasz model. Robi wtedy to samo, co Twoja przeglądarka, gdybyś wszedł na tę stronę ręcznie.
@@ -146,7 +232,48 @@ obsługiwać go z linii poleceń.
 
 ### Jak zacząć
 
-1. Pobierz najnowszy instalator z zakładki **[Releases](../../releases)** po prawej stronie tej strony.
-2. Uruchom pobrany plik `.exe`.
-3. Windows może pokazać niebieski ekran ostrzegawczy ("Windows chronił Twój komputer"). To normalne dla mniejszych, niezależnych aplikacji bez płatnego certyfikatu podpisu. Kliknij **"Więcej informacji" → "Uruchom mimo to"**.
+1. Pobierz instalator dla swojej platformy z zakładki **[Releases](../../releases)** po prawej stronie tej strony: `.exe` dla Windows, `.dmg` dla macOS (Apple Silicon).
+2. **Windows:** uruchom pobrany plik `.exe`. Windows może pokazać niebieski ekran ostrzegawczy ("Windows chronił Twój komputer"). To normalne dla mniejszych, niezależnych aplikacji bez płatnego certyfikatu podpisu. Kliknij **"Więcej informacji" → "Uruchom mimo to"**.
+3. **macOS:** otwórz `.dmg` i przeciągnij Llama Control do Applications. Build nie jest notaryzowany (brak certyfikatu Apple Developer), więc przy pierwszym uruchomieniu macOS odmówi otwarcia jako aplikacji "od niezidentyfikowanego dewelopera". Kliknij prawym na aplikację → **Otwórz**, i potwierdź. (Albo uruchom w Terminalu `xattr -cr /Applications/Llama\ Control.app`.)
 4. Gotowe. Aplikacja Cię poprowadzi.
+
+### FAQ
+
+#### Czym jest Llama Control?
+Llama Control to darmowa aplikacja na Windows i macOS (Apple Silicon) do uruchamiania modeli AI (LLM) lokalnie, na własnym komputerze, bez linii poleceń. To graficzna nakładka na otwartoźródłowy silnik llama.cpp.
+
+#### Czy Llama Control jest darmowa?
+Tak. Bez abonamentu, bez konta, bez opłat za użytkowanie.
+
+#### Czy Llama Control jest open source?
+Nie. Sama aplikacja jest zamkniętoźródłowa; to repozytorium udostępnia tylko instalator i dokumentację. Silnik, na którym działa (llama.cpp), jest otwartoźródłowy, a wszystko, co aplikacja robi w sieci, opisano w sekcji Prywatność powyżej.
+
+#### Jakiego silnika AI używa Llama Control?
+[llama.cpp](https://github.com/ggml-org/llama.cpp), jednego z najpopularniejszych otwartoźródłowych silników do lokalnego uruchamiania LLM. Llama Control instaluje go i aktualizuje automatycznie, dobierając wersję pod Twoje GPU.
+
+#### Jakie systemy operacyjne obsługuje Llama Control?
+Windows 10, Windows 11 oraz macOS na Apple Silicon (M1 i nowsze), na komputerze lub laptopie. Nie działa na telefonach ani tabletach. Linux jest planowany.
+
+#### Jakie karty graficzne działają z Llama Control?
+NVIDIA przez CUDA i AMD/Intel przez Vulkan na Windows; Apple Silicon przez Metal na macOS. Aplikacja sama wykrywa sprzęt i instaluje pasującą wersję silnika. Działa też bez GPU, tylko wolniej, na samym procesorze.
+
+#### Czym Llama Control różni się od Ollamy lub LM Studio?
+Ollama i LM Studio to pełne, samodzielne środowiska z usługą w tle, która działa i zużywa pamięć nawet w bezczynności. Llama Control to lekka nakładka, która uruchamia llama.cpp tylko wtedy, gdy z niego korzystasz, i wyłącza go po zakończeniu, więc nie zabiera RAM-u/CPU/GPU w tle.
+
+#### Skąd pochodzą modele AI?
+Modele pobierane są bezpośrednio z Hugging Face z poziomu aplikacji, która od razu pokazuje, czy dany model zmieści się w pamięci VRAM Twojej karty graficznej.
+
+#### Jakie rodziny modeli Llama Control rozpoznaje automatycznie?
+Qwen, Llama, Mistral, Gemma, DeepSeek i Nemotron: pliki tych modeli są rozpoznawane po nazwie i pokazywane z ich logo.
+
+#### Czy Llama Control zbiera moje dane albo czyta rozmowy?
+Nie. Wnioskowanie działa w całości lokalnie przez llama.cpp: nie ma konta, telemetrii, analityki ani śledzenia użycia. Aplikacja łączy się tylko z Hugging Face (wyszukiwanie/pobieranie modeli), GitHubem (sprawdzanie aktualizacji) oraz, tylko jeśli sam to skonfigurujesz własnym kluczem API, z dostawcą AI (Anthropic, OpenAI lub Google) dla opcjonalnych funkcji auto-tune i oceny benchmarków.
+
+#### Czy muszę znać linię poleceń?
+Nie. Cały sens Llama Control to usunięcie linii poleceń: instalacja silnika, pobieranie modeli oraz uruchamianie/zatrzymywanie lokalnego serwera AI to działania jednym kliknięciem w GUI. Wbudowany terminal jest dostępny dla zaawansowanych użytkowników, ale nigdy nie jest wymagany.
+
+#### Ile miejsca na dysku potrzebuję?
+Zależy, jakie modele pobierzesz: każdy waży od kilku do kilkudziesięciu gigabajtów, więc warto zaplanować wolne miejsce na dysku pod każdy model, który chcesz zatrzymać.
+
+#### Jak zainstalować Llama Control?
+Pobierz instalator dla swojej platformy ze strony [Releases](../../releases). Na Windows uruchom `.exe` i kliknij "Więcej informacji → Uruchom mimo to", jeśli SmartScreen pokaże ostrzeżenie. Na macOS otwórz `.dmg`, przeciągnij aplikację do Applications, a przy pierwszym uruchomieniu kliknij prawym → Otwórz, bo build nie jest notaryzowany (typowe dla niepodpisanych, niezależnych aplikacji, patrz [Jak zacząć](#jak-zacząć)).
