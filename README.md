@@ -81,13 +81,13 @@ In short: you install it, the app figures out the rest, you just click.
 
 #### Why llama.cpp instead of Ollama or LM Studio?
 
-This isn't meant to be another standalone AI engine competing with those. It's deliberately a **lightweight wrapper**, not a full application. Ollama and LM Studio are their own complete environments. They run in the background and use up memory and resources all the time, even when you're not doing anything. Llama Control doesn't have its own heavy engine running in the background. It simply turns `llama.cpp` on and off exactly when you want to use it, and doesn't eat your RAM or CPU/GPU power when you don't.
+This isn't meant to be another standalone AI engine competing with those. It's deliberately a **lightweight wrapper**, not a full application. Ollama and LM Studio are their own complete environments, each running its own background service. Ollama keeps that service running continuously and, by default, keeps a loaded model in memory for a few minutes after your last request (`keep_alive`) before unloading it; LM Studio keeps a loaded model in memory until you unload it yourself. Llama Control doesn't run a background inference service at all: `llama.cpp` starts only when you launch a model from the app, and stops the moment you stop it or close the app.
 
 | | Llama Control | Ollama / LM Studio |
 |---|---|---|
 | What it is | A lightweight wrapper around llama.cpp | A full standalone AI runtime/environment |
-| Background engine | Starts only when you launch a model, stops when you're done | Runs continuously as a background service |
-| Idle resource use | None | Keeps using RAM/CPU/GPU even when idle |
+| Background engine | `llama.cpp` starts only when you launch a model, stops when you're done | Runs as a continuous background service |
+| Loaded-model memory | Freed as soon as you stop the model | Ollama keeps it loaded for a few minutes after last use (`keep_alive`) by default; LM Studio keeps it loaded until you unload it |
 
 ### What devices this works on
 
@@ -143,7 +143,7 @@ Windows 10, Windows 11, and macOS on Apple Silicon (M1 and later), on desktop or
 NVIDIA GPUs are accelerated via CUDA, and AMD/Intel GPUs via Vulkan, on Windows; Apple Silicon GPUs are accelerated via Metal on macOS. The app auto-detects your hardware and installs the matching engine build. It also runs with no GPU at all, just slower, on the CPU alone.
 
 #### How is Llama Control different from Ollama or LM Studio?
-Ollama and LM Studio are full standalone environments with a background service that keeps running (and using memory) even when idle. Llama Control is a lightweight wrapper that starts llama.cpp only when you use it and shuts it down afterward, so it doesn't consume RAM/CPU/GPU in the background.
+Ollama runs its own background service and, by default, keeps a loaded model in memory for a few minutes after your last request (`keep_alive`) before unloading it; LM Studio keeps a loaded model in memory until you unload it yourself. Llama Control doesn't run a background inference service at all — it starts llama.cpp only when you launch a model and stops it the moment you're done.
 
 #### Where do the AI models come from?
 Models are downloaded directly from Hugging Face from inside the app, which also tells you upfront whether a given model will fit in your GPU's VRAM.
@@ -196,13 +196,13 @@ Krótko: instalujesz, apka sama dogaduje resztę, Ty tylko klikasz.
 
 #### Dlaczego llama.cpp, a nie np. Ollama albo LM Studio?
 
-To nie jest kolejny, osobny silnik AI konkurujący z tamtymi. To celowo **lekka nakładka**, a nie pełna aplikacja. Ollama i LM Studio to swoje własne, kompletne środowiska. Siedzą w tle i zajmują pamięć oraz zasoby cały czas, nawet gdy nic nie robisz. Llama Control nie ma własnego, ciężkiego silnika działającego w tle. Po prostu włącza i wyłącza `llama.cpp` dokładnie wtedy, kiedy chcesz z niego skorzystać, i nie zabiera Ci RAM-u ani mocy komputera, kiedy tego nie robisz.
+To nie jest kolejny, osobny silnik AI konkurujący z tamtymi. To celowo **lekka nakładka**, a nie pełna aplikacja. Ollama i LM Studio to swoje własne, kompletne środowiska, każde z własną usługą działającą w tle. Ollama trzyma tę usługę uruchomioną cały czas, a domyślnie trzyma też załadowany model w pamięci jeszcze kilka minut po ostatnim zapytaniu (`keep_alive`), zanim go wyładuje; LM Studio trzyma załadowany model w pamięci, dopóki sam go nie wyładujesz. Llama Control w ogóle nie uruchamia własnej usługi w tle: `llama.cpp` startuje tylko wtedy, gdy sam uruchomisz model z poziomu aplikacji, i gaśnie w momencie, gdy go zatrzymasz albo zamkniesz aplikację.
 
 | | Llama Control | Ollama / LM Studio |
 |---|---|---|
 | Czym jest | Lekka nakładka na llama.cpp | Pełne, samodzielne środowisko AI |
-| Silnik w tle | Uruchamia się tylko, gdy startujesz model, i gaśnie po zakończeniu | Działa cały czas jako usługa w tle |
-| Zużycie zasobów w bezczynności | Brak | Zajmuje RAM/CPU/GPU nawet bez użycia |
+| Silnik w tle | `llama.cpp` uruchamia się tylko, gdy startujesz model, i gaśnie po zakończeniu | Działa cały czas jako usługa w tle |
+| Pamięć zajęta przez model | Zwalniana od razu po zatrzymaniu modelu | Ollama domyślnie trzyma go jeszcze kilka minut po ostatnim użyciu (`keep_alive`); LM Studio trzyma go, dopóki sam go nie wyładujesz |
 
 ### Na jakich urządzeniach to działa
 
@@ -258,7 +258,7 @@ Windows 10, Windows 11 oraz macOS na Apple Silicon (M1 i nowsze), na komputerze 
 NVIDIA przez CUDA i AMD/Intel przez Vulkan na Windows; Apple Silicon przez Metal na macOS. Aplikacja sama wykrywa sprzęt i instaluje pasującą wersję silnika. Działa też bez GPU, tylko wolniej, na samym procesorze.
 
 #### Czym Llama Control różni się od Ollamy lub LM Studio?
-Ollama i LM Studio to pełne, samodzielne środowiska z usługą w tle, która działa i zużywa pamięć nawet w bezczynności. Llama Control to lekka nakładka, która uruchamia llama.cpp tylko wtedy, gdy z niego korzystasz, i wyłącza go po zakończeniu, więc nie zabiera RAM-u/CPU/GPU w tle.
+Ollama ma własną usługę w tle i domyślnie trzyma załadowany model w pamięci jeszcze kilka minut po ostatnim zapytaniu (`keep_alive`), zanim go wyładuje; LM Studio trzyma załadowany model w pamięci, dopóki sam go nie wyładujesz. Llama Control w ogóle nie uruchamia własnej usługi w tle — startuje llama.cpp tylko wtedy, gdy uruchamiasz model, i zatrzymuje go od razu po zakończeniu.
 
 #### Skąd pochodzą modele AI?
 Modele pobierane są bezpośrednio z Hugging Face z poziomu aplikacji, która od razu pokazuje, czy dany model zmieści się w pamięci VRAM Twojej karty graficznej.
