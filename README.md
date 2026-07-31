@@ -16,6 +16,8 @@
 
 **[English](#english)** · **[Polski](#polski)**
 
+<img src="docs/og-image.png" alt="Llama Control — desktop control panel for llama.cpp" width="100%">
+
 </div>
 
 <!--
